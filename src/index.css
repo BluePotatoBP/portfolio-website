@@ -1,13 +1,222 @@
+/* GLOBAL STYLING AND VARS */
+:root {
+  --transition: all 0.2s ease-in-out;
+  --background: #1c1c31;
+  --border-gray: #202225;
+  --bg-gray: #282C34;
+  --highlight-gray: #32363f;
+
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar {
+  width: .4rem;
+  height: .4rem;
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-gray);
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-gray);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-gray);
+}
+
+::-webkit-resizer {
+  background: var(--bg-gray);
+}
+
+/* GLOBAL CUSTOM OUTPUT TAGS */
+.outputs {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+output {
+  font-family: "Source Code Pro", Menlo, Monaco, Consolas, 'Courier New', monospace;
+  color: white;
+  background: var(--bg-gray);
+  border-radius: .4rem;
+  padding: .2rem .8rem;
+  font-size: .8rem;
+  font-weight: 400;
+  line-height: 1.8;
+  display: inline-block;
+  align-items: center;
+  margin: 0 .5rem;
+  margin-bottom: .5rem;
+
+  min-width: 10rem;
+  max-width: 50rem;
+  min-height: 1.9rem;
+  max-height: 9rem;
+  resize: vertical;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+
+  border: var(--border-gray) solid .15rem;
+}
+
+output a {
+  text-decoration: none;
+}
+
+output error::before {
+  content: "\2715  Error  ";
+  background-color: rgb(155, 7, 7);
+  color: white;
+  border-radius: 1rem;
+  padding: .1rem .5rem;
+  margin-right: 1rem;
+  border: rgb(177, 40, 40) solid .15rem;
+  min-width: 75px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: var(--transition);
+
+}
+
+output error:hover::before {
+  background-color: rgb(177, 40, 40);
+  border-radius: 1rem;
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+output success::before {
+  content: "\2714  Success";
+  background-color: rgb(61, 155, 7);
+  color: white;
+  border-radius: 1rem;
+  padding: .1rem .5rem;
+  margin-right: 1rem;
+  border: rgb(95, 177, 40) solid .15rem;
+  min-width: 75px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: var(--transition);
+
+}
+
+output success:hover::before {
+  background-color: rgb(95, 177, 40);
+  border-radius: 1rem;
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+output warning::before {
+  content: "\26A0  Warning";
+  background-color: rgb(214, 152, 19);
+  color: white;
+  border-radius: 1rem;
+  padding: .1rem .5rem;
+  margin-right: 1rem;
+  border: rgb(231, 189, 49) solid .15rem;
+  min-width: 75px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-size: .8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: var(--transition);
+
+}
+
+output warning:hover::before {
+  background-color: rgb(231, 189, 49);
+  border-radius: 1rem;
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+/* GLOBAL CUSTOM CODE TAGS */
+
+code pre {
+  /* ADD SYNTAX HIGHLIGHTING, CHECK DISCORD */
+  font-family: monospace;
+  font-weight: 300;
+  
+  background: var(--bg-gray);
+  color: white;
+  border-radius: 2px;
+  border-top: 3px solid #00aeef;
+  -moz-box-shadow: inset 0 0 10px #000;
+  box-shadow: inset 0 0 10px #000;
+
+  counter-reset: line;
+  overflow-x: auto;
+  overflow-y: auto;
+  resize: both;
+  
+  margin: .5rem;
+  min-width: 20rem;
+  max-width: 40rem;
+  min-height: 15rem;
+  max-height: 50vh;
+}
+
+code pre span {
+  display: block;
+  line-height: 1.4rem;
+}
+
+code pre span:before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  padding: 0 .5rem;
+  margin-right: .5rem;
+  width: 20px;
+  color: #888;
+  text-align: right;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+code pre span:hover {
+  background-color: var(--highlight-gray);
+  background-size: 100%;
+  background-repeat: repeat-x;
 }
