@@ -1,7 +1,7 @@
 /* GLOBAL STYLING AND VARS */
 :root {
   --transition: all 0.2s ease-in-out;
-  --background: #1c1c31;
+  --background: #20202b;
   --border-gray: #202225;
   --bg-gray: #282C34;
   --highlight-gray: #32363f;
@@ -34,10 +34,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--highlight-gray);
-}
-
-::-webkit-resizer {
-  background: var(--bg-gray);
 }
 
 /* GLOBAL CUSTOM OUTPUT TAGS */
@@ -192,7 +188,7 @@ code pre {
   margin: .5rem;
   min-width: 20rem;
   max-width: 40rem;
-  min-height: 15rem;
+  min-height: 1.5rem;
   max-height: 50vh;
 }
 

@@ -2,7 +2,6 @@
 
 ### Portfolio website built with [React](https://github.com/facebook/react) used to showcase my works over the years.
 
-<br />
 <h1>How to run:</h1>
 
 ```
