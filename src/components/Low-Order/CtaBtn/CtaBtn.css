@@ -1,0 +1,45 @@
+.cta-btn {
+    font-weight: 600;
+    min-width: 136px;
+    padding: 1rem 1.5rem;
+    margin: .5rem;
+
+    text-decoration: none;
+    border: none;
+    border-radius: 0.3rem;
+    text-transform: uppercase;
+    transition: 0.2s ease-in-out;
+}
+
+.cta-btn[btnstyle="PRIMARY"] {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.cta-btn[btnstyle="PRIMARY"]:hover {
+    background: var(--secondary-color);
+    
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+}
+
+.cta-btn[btnstyle="SECONDARY"] {
+    background: var(--secondary-color);
+    
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.cta-btn[btnstyle="SECONDARY"]:hover {
+    transform: translate(0.1rem, -0.1rem);
+    cursor: pointer;
+    box-shadow: -1px 1px 0 var(--primary-color);
+}
+
+.cta-btn[btnstyle="DISABLED"] {
+    background: lightgray;
+    color: gray;
+    cursor: not-allowed;
+}

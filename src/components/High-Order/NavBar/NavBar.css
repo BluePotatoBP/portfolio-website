@@ -1,0 +1,149 @@
+.navbar-container {
+    background: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .4);
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    padding: .5rem 0;
+    z-index: 1;
+}
+
+.navbar-container .navbar-helper-container {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-right: 1rem;
+}
+
+.navbar-container .spacer {
+    width: 100%;
+}
+
+.navbar-container a {
+    display: flex;
+    text-decoration: none;
+    color: var(--color-light-gray);
+}
+
+.navbar_logo, .navbar_logo:before {
+    font-weight: 900;
+    font-size: 2.4rem;
+    padding: 0 2rem;
+
+    background: linear-gradient(35deg, rgb(151, 164, 205) 0%, rgb(97, 112, 158) 39%, rgb(220, 249, 255) 100%);
+    background-size: 300% 300%;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: change 5s ease-in-out infinite;
+    -moz-animation: change 5s ease-in-out infinite;
+    -o-animation: change 5s ease-in-out infinite;
+    animation: change 5s ease-in-out infinite;
+}
+
+.navbar_links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar_links .link {
+    color: aliceblue;
+    border-radius: 0.5rem;
+    padding: .8rem .8rem;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.navbar_links .link:hover {
+    background: var(--primary-color);
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.navbar-container a.active_link {
+    background: var(--secondary-color);
+    color: var(--background-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: .75rem .75rem;
+
+    transition: var(--transition);
+}
+
+.navbar-container a.active_link:hover {
+    background: var(--background-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+
+    transition: var(--transition);
+}
+
+.navbar-container .icon {
+    color: var(--color-light-gray);
+    font-size: 1.2rem;
+    margin-right: .5rem;
+}
+
+/* change animation */
+@-webkit-keyframes change {
+    0% {
+        background-position: 35% 0%
+    }
+
+    50% {
+        background-position: 66% 100%
+    }
+
+    100% {
+        background-position: 35% 0%
+    }
+}
+
+@-moz-keyframes change {
+    0% {
+        background-position: 35% 0%
+    }
+
+    50% {
+        background-position: 66% 100%
+    }
+
+    100% {
+        background-position: 35% 0%
+    }
+}
+
+@-o-keyframes change {
+    0% {
+        background-position: 35% 0%
+    }
+
+    50% {
+        background-position: 66% 100%
+    }
+
+    100% {
+        background-position: 35% 0%
+    }
+}
+
+@keyframes change {
+    0% {
+        background-position: 35% 0%
+    }
+
+    50% {
+        background-position: 66% 100%
+    }
+
+    100% {
+        background-position: 35% 0%
+    }
+}
