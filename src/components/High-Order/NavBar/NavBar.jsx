@@ -1,17 +1,18 @@
 import './NavBar.css';
 
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { MdPermContactCalendar } from 'react-icons/md';
 import { FiExternalLink } from 'react-icons/fi';
 import { HiTemplate } from 'react-icons/hi';
 
 import SearchBar from '../SearchBar/SearchBar';
+import AnimatedIcon from '../../Low-Order/AnimatedIcon/AnimatedIcon';
 
 const NavBar = () => {
 
     return (
-        <div className="navbar-container">
-            <Link to="/" draggable={false} className='navbar_logo'>&#9863;</Link>
+        <nav className="navbar-container">
+            <AnimatedIcon />
             <div className="spacer"></div>
             <div className="navbar-helper-container">
                 <div className='navbar_links'>
@@ -21,7 +22,7 @@ const NavBar = () => {
                 </div>
                 <SearchBar />
             </div>
-        </div>
+        </nav>
     );
 
 }

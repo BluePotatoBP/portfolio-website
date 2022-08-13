@@ -29,20 +29,8 @@
     color: var(--color-light-gray);
 }
 
-.navbar_logo, .navbar_logo:before {
-    font-weight: 900;
-    font-size: 2.4rem;
+.navbar-container .animated_logo {
     padding: 0 2rem;
-
-    background: linear-gradient(35deg, rgb(151, 164, 205) 0%, rgb(97, 112, 158) 39%, rgb(220, 249, 255) 100%);
-    background-size: 300% 300%;
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: change 5s ease-in-out infinite;
-    -moz-animation: change 5s ease-in-out infinite;
-    -o-animation: change 5s ease-in-out infinite;
-    animation: change 5s ease-in-out infinite;
 }
 
 .navbar_links {
