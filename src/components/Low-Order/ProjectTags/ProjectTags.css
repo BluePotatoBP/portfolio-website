@@ -1,0 +1,19 @@
+.project-tags {
+    display: grid;
+    gap: 0.4rem;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    text-align: center;
+    overflow: hidden;
+}
+
+.project-tag {
+    font-size: 0.7rem;
+    font-weight: 300;
+    padding: 0.4rem;
+    background-color: var(--timestamp-color);
+    border-radius: 0.4rem;
+    min-width: 3rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

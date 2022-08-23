@@ -1,0 +1,143 @@
+.about-project {
+    user-select: none;
+}
+
+.about-project .about-project-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.about-project .item-data {
+    margin: 0.2rem 0;
+    padding: 0.2rem;
+    background-color: var(--timestamp-color);
+    border-radius: 0.4rem;
+    min-width: 1rem;
+    text-align: center;
+}
+
+.about-project .project-tags-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.about-project .project-tags-icon {
+    margin-left: 0.4rem;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.about-project h2 {
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.about-project .about-project-bottom {
+    margin-bottom: 1rem;
+}
+
+.about-project .about-project-error {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255, 91, 91, 0.8);
+    background-color: var(--timestamp-color);
+}
+
+.about-project .about-project-error-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 0;
+    padding: 0;
+    margin: 1rem;
+    font-size: 1rem;
+    opacity: 0.4;
+}
+
+.about-project .about-project-error-icon {
+    cursor: pointer;
+}
+
+.about-project .skeleton-text {
+    height: 1.2rem;
+    margin: 0.2rem 0;
+    border-radius: 0.4rem;
+    background-color: rgb(53, 53, 53);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(61, 61, 61, 0.4), rgba(255, 255, 255, 0));
+    background-size: 3rem 600%;
+    background-repeat: no-repeat;
+    background-position: left -2rem top 0;
+    -webkit-animation: shine 3s ease-in-out infinite;
+    animation: shine 3s ease infinite;
+}
+
+.about-project .about-project-loading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background-color: var(--timestamp-color);
+}
+
+.about-project .project-loading-skeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-project .skeleton-text.normal {
+    animation-delay: -0.2s;
+    width: 90%;
+}
+
+.about-project .skeleton-text.short-right {
+    animation-delay: -0.9s;
+    width: 70%;
+}
+
+.about-project .skeleton-text.short-left {
+    animation-delay: -0.5s;
+    width: 80%;
+}
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes shine {
+    to {
+        background-position: right -40px top 0;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: right -40px top 0;
+    }
+}

@@ -1,0 +1,7 @@
+.timestamp {
+    background-color: var(--timestamp-color);
+    border-radius: 0.4rem;
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem 0;
+    user-select: none;
+}

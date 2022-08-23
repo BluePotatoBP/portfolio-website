@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
 import "./AboutProject.css"
+import { useEffect, useState } from "react";
 
 import ProjectCodeInput from "../../Low-Order/ProjectCodeInput/ProjectCodeInput.jsx"
+import Timestamp from "../../Low-Order/Timestamp/Timestamp";
+import ProjectLanguage from "../../Low-Order/ProjectLanguage/ProjectLanguage";
+import ProjectTags from "../../Low-Order/ProjectTags/ProjectTags";
 
 import { AiFillInfoCircle } from "react-icons/ai";
 
@@ -41,43 +44,51 @@ const AboutProject = ({ project }) => {
         localStorage.setItem("github-data-" + project.repo, JSON.stringify(repoData));
     }, [repoData, project.repo]);
 
-    const mapProjectTags = () => {
-        return project.tags.map((tag, index) => {
-            return (<div className="about-project-tag" key={index}>{tag}</div>)
-        })
-    }
-
     if (hasRepoData) {
-        const creationDate = new Date(repoData.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
         const zipDownloadURL = `https://github.com/${repoData.owner.login}/${repoData.name}/archive/refs/heads/master.zip`;
 
         return (
             <div className="about-project">
                 <div className="about-project-top">
-                    <div className="about-project-title">
-                        <h2>About Project</h2>
-                    </div>
+                    <h2>About Project</h2>
                     <div className="about-project-top-content">
-                        <div className="about-project-item">Stars: {repoData.stargazers_count}</div>
-                        <div className="about-project-item">Watching: {repoData.watchers_count}</div>
-                        <div className="about-project-item">Forks: {repoData.forks_count}</div>
-                        <div className="about-project-item">Open Issues: {repoData.open_issues_count}</div>
-                        <div className="about-project-item">Language: {repoData.language}</div>
-                        <div className="about-project-item">Created: {creationDate}</div>
+                        <div className="about-project-item">
+                            <div>Stars:</div>
+                            <div className="item-data">{repoData.stargazers_count}</div>
+                        </div>
+                        <div className="about-project-item">
+                            <div>Watching:</div>
+                            <div className="item-data">{repoData.watchers_count}</div>
+                        </div>
+                        <div className="about-project-item">
+                            <div>Forks:</div>
+                            <div className="item-data">{repoData.forks_count}</div>
+                        </div>
+                        <div className="about-project-item">
+                            <div>Language:</div>
+                            <ProjectLanguage language={repoData.language} />
+                        </div>
+                        <div className="about-project-item">
+                            <div>Created:</div>
+                            <Timestamp timestamp={repoData.created_at} />
+                        </div>
                     </div>
                 </div>
                 <div className="about-project-middle">
-                    <div className="about-project-middle-content">
-                        <h2>Tags</h2>
-                        <div className="about-project-tags">{mapProjectTags()}</div>
-                    </div>
+                    <h2>Code</h2>
+                    <ProjectCodeInput customLabel={"HTTPS"} inputValue={repoData.clone_url} copyData={true} />
+                    <ProjectCodeInput customLabel={"SSH"} inputValue={repoData.ssh_url} copyData={true} />
+                    <ProjectCodeInput customLabel={"ZIP"} inputValue={zipDownloadURL} redirectUrl={zipDownloadURL} />
                 </div>
                 <div className="about-project-bottom">
                     <div className="about-project-bottom-content">
-                        <h2>Code</h2>
-                        <ProjectCodeInput customLabel={"HTTPS"} inputValue={repoData.clone_url} copyData={true} />
-                        <ProjectCodeInput customLabel={"SSH"} inputValue={repoData.ssh_url} copyData={true} />
-                        <ProjectCodeInput customLabel={"ZIP"} inputValue={zipDownloadURL} redirectUrl={zipDownloadURL} />
+                        <div className="about-project-middle-content">
+                            <div className="project-tags-container">
+                                <h2>Tags</h2>
+                                <AiFillInfoCircle title={`Tags can be used to search for projects.`} className="project-tags-icon" />
+                            </div>
+                            <ProjectTags tags={project.tags} />
+                        </div>
                         <h2>License</h2>
                         <div>{repoData.license ? repoData.license : "MIT"}</div>
                     </div>
@@ -89,11 +100,14 @@ const AboutProject = ({ project }) => {
             return (
                 <div className="about-project">
                     <div className="about-project-error">
-                        <h3 title="test">ERROR</h3>
-                        <div className="about-project-error-status">
-                            <AiFillInfoCircle title={`The ${responseStatus} error usually indicates that the item is missing, either it doesn't exist, it couldn't be found or it's access is forbidden.`} className="about-project-error-icon" />
+                        <div title="test">COULDNT LOAD INFO</div>
+                        <div className="about-project-error-content">
+                            <AiFillInfoCircle title={`The ${responseStatus} error means the repo is missing, either it doesn't exist, it couldn't be found or access to it is forbidden.`} className="about-project-error-icon" />
                             <h6>404</h6>
                         </div>
+                        <div className="skeleton-text normal" />
+                        <div className="skeleton-text short-right" />
+                        <div className="skeleton-text short-left" />
                     </div>
                 </div>
             )
@@ -101,11 +115,14 @@ const AboutProject = ({ project }) => {
             return (
                 <div className="about-project">
                     <div className="about-project-error">
-                        <h3>Repo Moved 🤷‍♀️</h3>
-                        <div className="about-project-error-status">
-                            <AiFillInfoCircle title="The 301 error usually indicates that the repo moved." className="about-project-error-icon" />
+                        <div>REPO MOVED 🤷‍♀️</div>
+                        <div className="about-project-error-content">
+                            <AiFillInfoCircle title="The 301 error usually means the repo moved." className="about-project-error-icon" />
                             <h6>403</h6>
                         </div>
+                        <div className="skeleton-text normal" />
+                        <div className="skeleton-text short-right" />
+                        <div className="skeleton-text short-left" />
                     </div>
                 </div>
             )
@@ -114,7 +131,12 @@ const AboutProject = ({ project }) => {
                 <div className="about-project">
                     <div className="about-project-loading">
                         <AiFillInfoCircle title="Still loading? Please contact the developer!" className="about-project-loading-stuck-icon" />
-                        <h3>LOADING</h3>
+                        <div>LOADING</div>
+                    </div>
+                    <div className="project-loading-skeleton">
+                        <div className="skeleton-text normal" />
+                        <div className="skeleton-text short-right" />
+                        <div className="skeleton-text short-left" />
                     </div>
                 </div>
             )

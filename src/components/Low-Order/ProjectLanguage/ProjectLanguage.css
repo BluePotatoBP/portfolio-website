@@ -1,0 +1,12 @@
+.project-language {
+    margin: 0.2rem 0;
+    padding: 0.2rem;
+    text-align: center;
+    user-select: none;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 900;
+    min-width: 1rem;
+    min-height: 1rem;
+    border-radius: 0.4rem;
+}
