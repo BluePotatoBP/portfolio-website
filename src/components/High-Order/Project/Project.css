@@ -35,8 +35,7 @@
 .project-container .project-summary {
     display: flex;
     flex-direction: column;
-    font-size: 1.5rem;
-    font-weight: 600;
+
 
     text-align: left;
 }

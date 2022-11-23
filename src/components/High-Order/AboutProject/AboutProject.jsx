@@ -1,5 +1,5 @@
 import "./AboutProject.css"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import ProjectCodeInput from "../../Low-Order/ProjectCodeInput/ProjectCodeInput.jsx"
 import Timestamp from "../../Low-Order/Timestamp/Timestamp";
@@ -10,13 +10,13 @@ import { AiFillInfoCircle } from "react-icons/ai";
 
 const AboutProject = ({ project }) => {
     // Request data from github api
-    const BASE_URL = "https://api.github.com/repos/bluepotatobp/";
+    const BASE_URL = "https://api.github.com/repos/";
     const [repoData, setRepoData] = useState(null);
     const [responseStatus, setResponseStatus] = useState(null);
     const hasRepoData = repoData !== null;
 
     // Getting data from github api
-    useEffect(() => {
+    const getRepoData = useCallback(() => {
         fetch(BASE_URL + project.repo)
             .then(response => {
                 setResponseStatus(response.status);
@@ -27,22 +27,21 @@ const AboutProject = ({ project }) => {
                 throw response;
             })
             .then(data => setRepoData(data))
-            .catch(e => { }) // i know i shouldnt do this shhh
     }, [project.repo]);
 
     // Getting data from local storage
     useEffect(() => {
         const data = localStorage.getItem("github-data-" + project.repo);
         if (data !== null && JSON.parse(data).name === project.name) setRepoData(JSON.parse(data));
-        if (data === null) return;
+        if (data === null) return getRepoData();
         if (data) setRepoData(JSON.parse(data));
-    }, [project.repo, project.name]);
+    }, [project.repo, project.name, getRepoData]);
 
     // Saving data to local storage
     useEffect(() => {
-        if (repoData === null) return;
+        if (repoData === null) return getRepoData();
         localStorage.setItem("github-data-" + project.repo, JSON.stringify(repoData));
-    }, [repoData, project.repo]);
+    }, [repoData, project.repo, getRepoData]);
 
     if (hasRepoData) {
         const zipDownloadURL = `https://github.com/${repoData.owner.login}/${repoData.name}/archive/refs/heads/master.zip`;
@@ -90,7 +89,7 @@ const AboutProject = ({ project }) => {
                             <ProjectTags tags={project.tags} />
                         </div>
                         <h2>License</h2>
-                        <div>{repoData.license ? repoData.license : "MIT"}</div>
+                        <div>{repoData.license ? repoData.license.name : "MIT"}</div>
                     </div>
                 </div>
             </div>

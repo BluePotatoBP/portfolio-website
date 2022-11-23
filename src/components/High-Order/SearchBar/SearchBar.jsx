@@ -13,13 +13,54 @@ const SearchBar = () => {
     const [inputItems, setInputItems] = useState([]);
     useEffect(() => { setInputItems(getProjects()) }, []);
     const hasProjects = Object.keys(inputItems).length > 0;
-    // Search hook and logic
+
+    // Search state and logic
     const [searchValue, setSearchValue] = useState("");
     const handleInputChange = (e) => setSearchValue(e.target.value);
     const inputExists = searchValue.length > 0;
+
     // Clear button
     const handleInputClear = () => setSearchValue("");
-    
+
+    // Is focused state
+    const [focused, setFocused] = useState("");
+    useEffect(() => { setFocused(false) }, []);
+
+    // Getting search input element
+    const searchInput = document.getElementsByClassName("search-input")[0];
+    const searchItems = document.getElementsByClassName("search-items")[0];
+
+    // Change search-input outline color on focus
+    const handleInputFocus = () => {
+        searchInput.placeholder = "";
+        searchInput.style.outlineColor = "#A3EBB1"
+        setFocused(true);
+    };
+
+    // Change search-input outline color on lost focus
+    const handleBlur = () => {
+        setTimeout(() => {
+            searchInput.placeholder = "Search";
+            searchInput.style.outlineColor = "#e0e0e0";
+            searchItems.style.padding = "0";
+
+            setFocused(false);
+        }, 100)
+    };
+
+    // Search shortcut
+    useEffect(() => {
+        const callback = (event) => {
+            if ((event.metaKey || event.ctrlKey) && event.code === 'KeyK') {
+                event.preventDefault();
+                focused ? searchInput.blur() : searchInput.focus();
+            }
+        };
+
+        document.addEventListener('keydown', callback);
+        return () => document.removeEventListener('keydown', callback);
+    }, [focused, searchInput]);
+
     // Filtering projects from tags
     let projectList = [];
     const filteredProjects = () => {
@@ -36,14 +77,19 @@ const SearchBar = () => {
         const shortDesc = p.shortDesc ? p.shortDesc : "Something went wrong...";
         const thumbnailSrc = p.thumbnail ? <img alt="" draggable={false} src={p.thumbnail} /> : <MdImageNotSupported className="thumbnail-fallback" />;
 
-        return <li key={decoName + Math.floor(Math.random() * 100)} className="search-item">
-            <Link to={linkTo} draggable={false} onClick={handleInputClear}>
-                <div className="search-result-thumbnail">{thumbnailSrc}</div>
-                <div className="search-result-info">
-                    <div className="search-result-name">{decoName}</div>
-                    <div className="search-result-desc">{shortDesc}</div>
-                </div>
-            </Link>
+        return <li key={"item" + projectList.indexOf(p)}>
+            <div className="search-item">
+                <Link to={linkTo} draggable={false} onClick={handleInputClear} key={"item" + projectList.indexOf(p)}>
+                    <div className="search-result-thumbnail">{thumbnailSrc}</div>
+                    <div className="search-result-info">
+                        <div className="result-clickable">
+                            <div className="search-result-name">{decoName}</div>
+                            <div className="search-result-desc">{shortDesc}</div>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+            <div className="bottom-line" key={"divider" + projectList.indexOf(p)}></div>
         </li>
     })
 
@@ -51,15 +97,13 @@ const SearchBar = () => {
         <div className="search-container">
             <div className="search-bar">
                 {hasProjects ? <FaSearch className="search-icon" /> : <FaHourglassHalf className="search-icon-fallback" />}
-                <input type="text" placeholder="Search" aria-label="Enter serach term" className="search-input" value={searchValue} onChange={handleInputChange} />
+                <input type="text" placeholder="Search" aria-label="Enter serach term" className="search-input" value={searchValue} onChange={handleInputChange} onBlur={handleBlur} onFocus={handleInputFocus} />
 
                 {inputExists && <button className="search-clear" onClick={handleInputClear}><ImCross /></button>}
                 {inputExists && filteredProjects()}
             </div>
             <div className="search-items">
-                <ul>
-                    {projectListItems()}
-                </ul>
+                {focused ? <ul>{projectListItems()}</ul> : null}
             </div>
         </div>
     );

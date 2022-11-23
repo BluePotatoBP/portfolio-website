@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import { getProject } from "../../../util/ProjectsList/ProjectsList"
 
 import AboutProject from "../AboutProject/AboutProject.jsx"
+import ProjectDescription from "../ProjectDescription/ProjectDescription";
 
 import { FaGithubSquare } from 'react-icons/fa';
 
 const Project = () => {
     const { project } = useParams();
     const projectData = getProject(project);
-    const GITHUB_URL = "https://github.com/BluePotatoBP/"
+    const GITHUB_URL = "https://github.com/"
 
     return (
         <div className="project-container">
@@ -18,7 +19,7 @@ const Project = () => {
                     <img src={projectData.thumbnail} alt="thumbnail" draggable={false} className="project-thumbnail" />
                     <div className="project-summary">
                         <h2>{projectData.decoName}</h2>
-                        <h6>{projectData.shortDesc}</h6>
+                        <span>{projectData.shortDesc}</span>
                     </div>
                 </div>
                 <div className="project-summary-icons">
@@ -27,12 +28,7 @@ const Project = () => {
             </div>
             <div className="project-description-row">
                 <div className="project-content">
-                    <div className="project-desc">
-                        <h3>{projectData.description}</h3>
-                        <div className="project-gallery">
-                            <h2>Images</h2>
-                        </div>
-                    </div>
+                    <ProjectDescription project={projectData} />
                     <AboutProject project={projectData} />
                 </div>
             </div>
