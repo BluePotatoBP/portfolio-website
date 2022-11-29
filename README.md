@@ -26,7 +26,7 @@ npm run build
 
 - I’m currently working on my [react portfolio](https://github.com/BluePotatoBP/portfolio-website)
 
-- All of my projects are available at [bluepotatobp.github.com/home](https://bluepotatobp.github.com/home)
+- List of my projects will be available at: (soon)
 
 - Have questions? 
     - Discord: **BluePotatoBP#5214**
