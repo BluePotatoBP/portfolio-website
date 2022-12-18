@@ -12,7 +12,7 @@ const projects = {
         name: "portfolio-website",
         decoName: "Portfolio Website",
         shortDesc: "My portfolio website made in JS with REACT",
-        thumbnail: "logo512.png",
+        thumbnail: "https://github.com/BluePotatoBP/portfolio-website/blob/master/public/logo512.png?raw=true",
         repo: "bluepotatobp/portfolio-website",
         tags: ["portfolio", "website", "react", "portfolio website"]
     },
@@ -24,6 +24,16 @@ const projects = {
         thumbnail: "",
         repo: "voidbotsprod/void-sapphire",
         tags: ["void", "sapphire", "discord", "discordjs", "voidbots"]
+    },
+    
+    "nicetry": {
+        name: "",
+        decoName: "Nice Try",
+        shortDesc: "But it's not going to work buddy",
+        thumbnail: "",
+        repo: "",
+        tags: ["<", ">"],
+        hidden: true
     },
 }
 
