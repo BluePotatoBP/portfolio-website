@@ -3,7 +3,7 @@ const projects = {
         name: "likealight",
         decoName: "Like A Light",
         shortDesc: "Discord bot made in JS with DJS and AKAIRO",
-        thumbnail: "https://github.com/BluePotatoBP/portfolio-website/blob/master/public/lalLogo512.png?raw=true",
+        thumbnail: "https://github.com/BluePotatoBP/portfolio-website/blob/master/src/util/Images/lalLogo512.png?raw=true",
         repo: "bluepotatobp/lal-akairo",
         tags: ["lal", "likealight", "light", "akairo", "discord", "discordjs", "like a light"]
     },
