@@ -30,7 +30,7 @@ const projects = {
         name: "",
         decoName: "Nice Try",
         shortDesc: "But it's not going to work buddy",
-        thumbnail: "",
+        thumbnail: "https://github.com/BluePotatoBP/portfolio-website/blob/master/src/util/Images/clown_transform.gif?raw=true",
         repo: "",
         tags: ["<", ">"],
         hidden: true
