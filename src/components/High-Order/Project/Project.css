@@ -8,14 +8,58 @@
     height: 100%;
 }
 
+.project-container a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.project-container code {
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.8rem;
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    padding: 0.25rem 1rem;
+    border-radius: 0.5rem;
+    opacity: 0.85;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    font-family: "Source Code Pro", sans-serif;
+    margin: 1.5rem 0;
+}
+
+th {
+    border: 1px solid var(--primary-dark-color);
+    padding: 5px;
+}
+
+td {
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--background-light-color);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-weight: 800;
+}
+
 .project-container .project-top-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
     min-width: 70%;
     margin: 2rem;
+    box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
 }
 
 .project-top-row-title {
@@ -58,7 +102,7 @@
 
 .project-container .project-summary h2 {
     padding: 0;
-    margin: 0;    
+    margin: 0;
 }
 
 .project-container .project-summary h6 {
@@ -81,6 +125,8 @@
 .project-container .project-desc {
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.4);
+
     width: 70%;
     padding: 2rem;
 }
@@ -88,6 +134,8 @@
 .project-container .about-project {
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.4);
+
     width: 30%;
     padding: 2rem;
 }
