@@ -22,7 +22,7 @@ const ProjectCodeInput = ({ customLabel, inputValue, copyData, redirectUrl }) =>
         <div className="code-input-container">
             <div className="input-label">{customLabel}</div>
             <div className="input-container">
-                <input className={labelInputName} type="text" readOnly={true} aria-label={inputValue} value={inputValue} />
+                <input className={labelInputName} type="text" readOnly={true} title={inputValue} value={inputValue} />
                 {
                     copyData ?
                         <button onClick={copyToClipboard} className="input-copy-btn">
