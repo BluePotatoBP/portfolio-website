@@ -84,7 +84,7 @@ const AboutProject = ({ project }) => {
                         <div className="about-project-middle-content">
                             <div className="project-tags-container">
                                 <h2>Tags</h2>
-                                <AiFillInfoCircle title={`Tags can be used to search for projects.`} className="project-tags-icon" />
+                                <AiFillInfoCircle title="Tags can be used to search for projects." className="project-tags-icon" />
                             </div>
                             <ProjectTags tags={project.tags} />
                         </div>

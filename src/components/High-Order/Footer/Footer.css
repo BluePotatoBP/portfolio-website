@@ -4,12 +4,11 @@
     justify-content: center;
     align-items: center;
 
-    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    padding: 0.25rem 2rem;
     max-width: 100%;
     gap: 4rem;
-
-    background-color: var(--primary-dark-color);
-    color: var(--secondary-color);
+    opacity: 0.8;
 }
 
 .footer-container .footer-content {
@@ -39,7 +38,6 @@
 }
 
 .footer-container .link:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.1);
     transition: var(--transition);
-    color: var(--primary-color);
 }
