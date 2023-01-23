@@ -2,6 +2,8 @@
 
 ### Portfolio website built with [React](https://github.com/facebook/react) used to showcase my works over the years.
 
+### Project is on hold until [VOID](https://github.com/voidbotsprod/void-sapphire) is complete.
+
 <h1>How to run:</h1>
 
 ```
@@ -24,7 +26,7 @@ npm run build
 
 <h2>Interesting stuff</h2>
 
-- I’m currently working on my [react portfolio](https://github.com/BluePotatoBP/portfolio-website)
+- I’m currently working on my [react portfolio](https://github.com/BluePotatoBP/portfolio-website) and [VOID](https://github.com/voidbotsprod/void-sapphire)
 
 - List of my projects will be available at: (soon)
 
