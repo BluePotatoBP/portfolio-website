@@ -1,6 +1,6 @@
 import "./SearchBar.css";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { getProjects } from "../../../util/ProjectsList/ProjectsList.js";
 import { Link } from "react-router-dom"
 
@@ -16,11 +16,11 @@ const SearchBar = () => {
 
     // Search state
     const [searchValue, setSearchValue] = useState("");
-    const handleInputChange = (e) => setSearchValue(e.target.value);
+    const handleInputChange = useCallback((e) => setSearchValue(e.target.value), []);
     const inputExists = searchValue.length > 0;
 
     // Clear button
-    const handleInputClear = () => setSearchValue("");
+    const handleInputClear = useCallback(() => setSearchValue(""), []);
 
     // Filtering projects from tags/name and memoizing the result
     const projectList = useMemo(() => {
@@ -49,15 +49,19 @@ const SearchBar = () => {
     // Focus state
     const [focused, setFocused] = useState(false);
     const handleFocus = () => setFocused(true);
-    const handleBlur = () => {
-        setTimeout(() => {
-            setFocused(false)
-        }, 100)
-    };
+    const handleBlur = useRef(() => { });
+
+    useEffect(() => {
+        handleBlur.current = () => {
+            setTimeout(() => {
+                setFocused(false);
+            }, 100);
+        };
+    }, []);
 
     // Getting elements for later use
-    const searchInput = document.getElementsByClassName("search-input")[0];
-    const searchItems = document.getElementsByClassName("search-items")[0];
+    const searchInput = useRef(null);
+    const searchItems = useRef(null);
 
     // Change appearance of search bar based on focus
     useEffect(() => {
@@ -68,12 +72,15 @@ const SearchBar = () => {
 
         if (focused) {
             // If focused, change the placeholder and border color
-            searchInput.style.outlineColor = "#A3EBB1"
-            searchInput.style.fontWeight = "300";
+            searchInput.current.style.outlineColor = "#A3EBB1"
+            searchInput.current.style.fontWeight = "300";
 
             // If parent element exists and the input is empty change padding to 0
-            if (searchItems && inputExists) searchItems.style.padding = "0.75rem 0";
-            else searchItems.style.padding = "0";
+            if (searchItems.current && inputExists) {
+                searchItems.current.style.padding = "0.75rem 0";
+            } else {
+                searchItems.current.style.padding = "0";
+            }
 
             // Adding a footer with tips
             if (inputExists && !noShortcutTipElement && projectList.length > 0) {
@@ -92,7 +99,7 @@ const SearchBar = () => {
 
                 const searchFooter = document.createElement("div");
                 searchFooter.className = "search-footer";
-                searchItems.appendChild(searchFooter);
+                searchItems.current.appendChild(searchFooter);
 
                 const shortcutTip = document.createElement("div");
                 shortcutTip.className = "shortcut-tip";
@@ -105,7 +112,7 @@ const SearchBar = () => {
                 searchFooter.appendChild(keybindsTip);
 
             } else if (!inputExists || projectList.length === 0) {
-                if (noSearchFooter) searchItems.removeChild(noSearchFooter);
+                if (noSearchFooter) searchItems.current.removeChild(noSearchFooter);
                 if (noShortcutTipElement) noSearchFooter.removeChild(noShortcutTipElement);
                 if (noKeybindsElement) noSearchFooter.removeChild(noKeybindsElement);
             }
@@ -115,29 +122,29 @@ const SearchBar = () => {
                 const noProjects = document.createElement("div");
                 noProjects.className = "no-projects";
                 noProjects.innerHTML = "Couldn't find that project.";
-                searchItems.appendChild(noProjects);
+                searchItems.current.appendChild(noProjects);
             } else if (projectList.length === 0) {
                 const noProjectsElementChild = document.getElementsByClassName("no-projects")[1];
-                if (noProjectsElementChild) searchItems.removeChild(noProjectsElementChild);
+                if (noProjectsElementChild) searchItems.current.removeChild(noProjectsElementChild);
             }
 
             // If theres no input and no projects remove "error" message
             if (searchValue === "" || searchValue === " " || projectList.length > 0) {
-                if (noProjectsElement) searchItems.removeChild(noProjectsElement);
+                if (noProjectsElement) searchItems.current.removeChild(noProjectsElement);
             }
 
-        } else if (searchInput) {
+        } else if (searchInput.current) {
             // If not focused, remove tips from footer
-            if (noSearchFooter) searchItems.removeChild(noSearchFooter);
+            if (noSearchFooter) searchItems.current.removeChild(noSearchFooter);
             if (noShortcutTipElement) noSearchFooter.removeChild(noShortcutTipElement);
             if (noKeybindsElement) noSearchFooter.removeChild(noKeybindsElement);
 
             // Change styling back to normal
-            if (!inputExists) searchInput.style.fontWeight = "600";
-            searchInput.placeholder = "Search";
-            searchInput.style.outlineColor = "#e0e0e0";
-            searchItems.style.padding = "0";
-            if (noProjectsElement) searchItems.removeChild(noProjectsElement);
+            if (!inputExists) searchInput.current.style.fontWeight = "600";
+            searchInput.current.placeholder = "Search";
+            searchInput.current.style.outlineColor = "#e0e0e0";
+            if (searchItems.current) searchItems.current.style.padding = "0";
+            if (noProjectsElement) searchItems.current.removeChild(noProjectsElement);
         }
     }, [searchInput, focused, searchValue, searchItems, projectList, inputExists]);
 
@@ -148,12 +155,25 @@ const SearchBar = () => {
         const callback = (event) => {
             if ((event.metaKey || event.ctrlKey) && event.code === 'KeyK') {
                 event.preventDefault();
-                focused ? searchInput.blur() : searchInput.focus();
+                focused ? searchInput.current.blur() : searchInput.current.focus();
             }
         };
         document.addEventListener('keydown', callback);
         return () => document.removeEventListener('keydown', callback);
     }, [focused, searchInput]);
+
+    // Clear input shortcut (Ctrl + U)
+    // Same story as above
+    useEffect(() => {
+        const callback = (event) => {
+            if ((event.metaKey || event.ctrlKey) && event.code === 'KeyU') {
+                event.preventDefault();
+                handleInputClear();
+            }
+        };
+        document.addEventListener('keydown', callback);
+        return () => document.removeEventListener('keydown', callback);
+    }, [handleInputClear]);
 
     // Mapping the projects and returning list items
     const projectListItems = () => projectList.slice(0, 5).map(p => {
@@ -182,10 +202,10 @@ const SearchBar = () => {
         <div className="search-container">
             <div className="search-bar">
                 {hasProjects ? <FaSearch className="search-icon" /> : <FaHourglassHalf className="search-icon-fallback" />}
-                <input type="text" placeholder="Search" aria-label="Enter serach term" className="search-input" value={searchValue} onChange={handleInputChange} onBlur={handleBlur} onFocus={handleFocus} />
+                <input type="text" placeholder="Search" aria-label="Enter serach term" className="search-input" ref={searchInput} value={searchValue} onChange={handleInputChange} onBlur={handleBlur.current} onFocus={handleFocus} maxLength={50} />
                 {inputExists && <button className="search-clear" onClick={handleInputClear}><ImCross /></button>}
             </div>
-            <div className="search-items">
+            <div className="search-items" ref={searchItems}>
                 {focused ? <ul>{projectListItems()}</ul> : null}
             </div>
         </div>

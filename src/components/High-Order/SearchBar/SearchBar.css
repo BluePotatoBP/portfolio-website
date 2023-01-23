@@ -136,6 +136,8 @@
     font-size: 2.2rem;
     width: 2.5rem;
     height: 2.5rem;
+    border-radius: 0.6rem;
+    background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
@@ -196,7 +198,7 @@
 .search-items .search-result-desc {
     text-decoration: none;
     color: var(--secondary-color);
-    opacity: 80%;
+    opacity: 0.8;
     font-size: 0.8rem;
     font-weight: 400;
 }
