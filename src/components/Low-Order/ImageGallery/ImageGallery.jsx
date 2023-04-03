@@ -61,12 +61,15 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 		const maxDotsToShow = Math.min(maxDots, images.length);
 		const dots = [];
 
+		// Add dots
 		for (let i = 0; i < maxDotsToShow; i++) {
 			dots.push(<span key={i} className={`dot ${i === currentIndex ? "active" : ""}`} onClick={() => handleDotClick(i)}>&#8226;</span>);
 		}
 
+		// If theres more images than dots, add overflow dots
 		if (images.length > maxDotsToShow) {
 			dots.push(<span key={maxDotsToShow} className={`dot overflow ${currentIndex >= maxDots ? "active" : ""}`}>∙</span>);
+			dots.unshift(<span key={maxDotsToShow + 1} className={`dot overflow ${currentIndex >= maxDots ? "active" : ""}`}>∙</span>);
 		}
 
 		return <div className="dot-container">{dots}</div>;
@@ -74,27 +77,21 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 
 	return (
 		<div className="image-scroller" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-			<div className="image-container">
-				{images.map((image, index) => {
-					const isActive = index === currentIndex;
-					const classNames = `image ${isActive ? "active" : ""}`;
-					return (
-						<img
-							key={index}
-							src={isActive ? image : ""}
-							alt=""
-							className={classNames}
-							loading={isActive ? "eager" : "lazy"}
-							onMouseEnter={handleMouseEnter}
-							onMouseLeave={handleMouseLeave}
-						/>
-					);
-				})}
-			</div>
-			<div className="controls">
-				<button className="prev" onClick={handlePrevClick}>&lt;</button>
-				{renderDots()}
-				<button className="next" onClick={handleNextClick}>&gt;</button>
+			<div className="inner-card">
+				<div className="image-container">
+					<img
+						src={images[currentIndex]}
+						alt=""
+						className="image"
+						onMouseEnter={handleMouseEnter}
+						onMouseLeave={handleMouseLeave}
+					/>
+				</div>
+				<div className="controls">
+					<button className="prev" onClick={handlePrevClick}>◀</button>
+					{renderDots()}
+					<button className="next" onClick={handleNextClick}>▶</button>
+				</div>
 			</div>
 		</div>
 	);
