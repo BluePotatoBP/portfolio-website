@@ -1,7 +1,6 @@
 .animated_logo, .animated_logo:before {
     font-weight: 500;
-    font-size: 2.4rem;
-
+	
     background: linear-gradient(35deg, rgb(151, 164, 205) 0%, rgb(97, 112, 158) 39%, rgb(220, 249, 255) 100%);
     background-size: 300% 300%;
     background-clip: border-box;
