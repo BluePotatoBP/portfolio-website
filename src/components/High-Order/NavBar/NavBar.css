@@ -42,7 +42,7 @@
 
 .navbar_links .link {
     color: aliceblue;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     padding: .8rem .8rem;
     transition: var(--transition);
     border: 1px solid transparent;
@@ -58,7 +58,7 @@
     background: var(--secondary-color);
     color: var(--background-color);
     border: 1px solid var(--secondary-color);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     text-align: center;
     padding: .75rem .75rem;
 
