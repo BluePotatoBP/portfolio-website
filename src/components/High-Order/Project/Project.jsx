@@ -18,7 +18,7 @@ const Project = () => {
         <div className="project-container">
             <div className="project-top-row">
                 <div className="project-top-row-title">
-                    {projectData.thumbnail ? <img src={projectData.thumbnail} alt="thumbnail" draggable={false} className="project-thumbnail" /> : <MdImageNotSupported className="project-thumbnail fallback" />}
+                    {projectData.thumbnail ? <img src={process.env.PUBLIC_URL + `/${projectData.thumbnail}`} onLoad={(e) => { e.target.src = process.env.PUBLIC_URL + `/${projectData.thumbnail}`}} alt="thumbnail" draggable={false} className="project-thumbnail" /> : <MdImageNotSupported className="project-thumbnail fallback" />}
                     <div className="project-summary">
                         <h2>{projectData.decoName}</h2>
                         <span>{projectData.shortDesc}</span>
