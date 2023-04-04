@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import "./ImageGallery.css";
 
 const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
@@ -6,6 +6,10 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 	const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
 	const intervalRef = useRef(null);
+
+	const stopAutoplay = useCallback(() => {
+		clearInterval(intervalRef.current);
+	}, []);
 
 	// Autoplay for images
 	useEffect(() => {
@@ -23,11 +27,7 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 
 		startAutoplay();
 		return () => stopAutoplay();
-	}, [autoplaySpeed, images.length, currentIndex, isAutoPlaying]);
-
-	const stopAutoplay = () => {
-		clearInterval(intervalRef.current);
-	};
+	}, [autoplaySpeed, images.length, currentIndex, isAutoPlaying, stopAutoplay]);
 
 	const handlePrevClick = () => {
 		const newIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
@@ -47,14 +47,14 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 		stopAutoplay();
 	};
 
-	const handleMouseEnter = () => {
+	const handleMouseEnter = useCallback(() => {
 		setIsAutoPlaying(false);
 		stopAutoplay();
-	};
+	}, [setIsAutoPlaying, stopAutoplay]);
 
-	const handleMouseLeave = () => {
+	const handleMouseLeave = useCallback(() => {
 		setIsAutoPlaying(true);
-	};
+	}, [setIsAutoPlaying]);
 
 	const renderDots = () => {
 		if (images.length <= 1) return null;
@@ -75,17 +75,21 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 		return <div className="dot-container">{dots}</div>;
 	};
 
+	const imageElement = useMemo(() => (
+		<img
+			src={images[currentIndex]}
+			alt=""
+			className="image"
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+		/>
+	), [currentIndex, handleMouseEnter, handleMouseLeave, images]);
+
 	return (
 		<div className="image-scroller" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 			<div className="inner-card">
 				<div className="image-container">
-					<img
-						src={images[currentIndex]}
-						alt=""
-						className="image"
-						onMouseEnter={handleMouseEnter}
-						onMouseLeave={handleMouseLeave}
-					/>
+					{imageElement}
 				</div>
 				<div className="controls">
 					<button className="prev" onClick={handlePrevClick}>◀</button>
