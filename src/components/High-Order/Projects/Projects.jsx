@@ -41,7 +41,7 @@ const Projects = () => {
 			<div className="projects-main-display">
 				<div className="featured-list">
 					<div className="title-large featured">Featured Projects</div>
-					<div className="title-paragraph">Some of the projects I had tons of fun working on!</div>
+					<div className="title-text">Some of the projects I had tons of fun working on!</div>
 					<div className="featured-list-items">{listProjects(3, true)}</div>
 					<div className="slope-shape-divider">
 						<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -61,7 +61,7 @@ const Projects = () => {
 							other projects, such as
 							<HighlightedText text={"Portfolio Website"} image={PORTFOLIO_LOGO} />
 							and
-							<HighlightedText text={"VOID"} image={VOID_LOGO} />!
+							<HighlightedText text={"VOID"} image={VOID_LOGO} />
 						</span>
 					</div>
 					<ImageGallery images={imagesList} />

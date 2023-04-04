@@ -24,15 +24,67 @@
 	min-height: 70vw;
 }
 
+/********* Featured Projects List *********/
+
+.featured-list {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 7rem 0 0 0;
+	padding-bottom: 10rem;
+}
+
+.featured-list-items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	min-width: 80%;
+	max-width: 80%;
+	gap: 1rem;
+}
+
+.title-large {
+	color: var(--secondary-color);
+	font-size: 3rem;
+	font-weight: 600;
+	margin-top: 1rem;
+}
+
+.title-text {
+	color: var(--secondary-color);
+	font-size: 1rem;
+	font-weight: 400;
+	margin-bottom: 1rem;
+}
+
+.featured {
+	font-size: 4rem;
+	font-weight: 900;
+	background: linear-gradient(35deg, rgb(151, 164, 205) 0%, rgb(97, 112, 158) 39%, rgb(220, 249, 255) 100%);
+	background-size: 300% 300%;
+	background-clip: border-box;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: change 5s ease-in-out infinite;
+	-moz-animation: change 5s ease-in-out infinite;
+	-o-animation: change 5s ease-in-out infinite;
+	animation: change 5s ease-in-out infinite;
+}
+
+/********* Bottom Container *********/
+
 .content-paragraph {
 	display: flex;
 	flex-direction: row;
 	position: relative;
 	align-items: center;
-	justify-content:space-around;
+	justify-content: space-evenly;
 	text-align: left;
 	width: 100%;
-	padding-bottom: 7rem;
+	padding: 7rem 0 7rem 0;
 	font-size: 1.25rem;
 	font-weight: 400;
 	opacity: 0.8;
@@ -40,11 +92,7 @@
 	background: rgba(40, 43, 54, 0.8);
 }
 
-@media screen and (max-width: 768px) {
-	.content-paragraph {
-		flex-direction: column;
-	}
-}
+/********* Content Container *********/
 
 .content-container {
 	display: flex;
@@ -61,7 +109,7 @@
 }
 
 .bottom-paragraph-text {
-	font-size: 1.25rem;
+	font-size: 1.4rem;
 	max-width: 20vw;
 }
 
@@ -102,52 +150,18 @@
 	color: var(--primary-color);
 }
 
-.featured-list {
-	position: relative;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 7rem 0 0 0;
-	padding-bottom: 10rem;
-}
+@media screen and (max-width: 768px) {
+	.content-paragraph {
+		flex-direction: column;
+	}
 
-.featured-list-items {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	min-width: 80%;
-	max-width: 80%;
-	gap: 1rem;
-}
+	.content-container {
+		width: 80vw;
+	}
 
-.title-large {
-	color: var(--secondary-color);
-	font-size: 3rem;
-	font-weight: 600;
-	margin-top: 1rem;
-}
-
-.title-paragraph {
-	color: var(--secondary-color);
-	font-size: 1rem;
-	font-weight: 400;
-	margin-bottom: 1rem;
-}
-
-.featured {
-	font-size: 4rem;
-	font-weight: 900;
-	background: linear-gradient(35deg, rgb(151, 164, 205) 0%, rgb(97, 112, 158) 39%, rgb(220, 249, 255) 100%);
-	background-size: 300% 300%;
-	background-clip: border-box;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	-webkit-animation: change 5s ease-in-out infinite;
-	-moz-animation: change 5s ease-in-out infinite;
-	-o-animation: change 5s ease-in-out infinite;
-	animation: change 5s ease-in-out infinite;
+	.bottom-paragraph-text {
+		max-width: 80vw;
+	}
 }
 
 /********* Curve Shape Divider *********/
@@ -195,6 +209,12 @@
 
 .slope-shape-divider .shape-fill {
 	fill: rgb(32, 34, 41);
+}
+
+@media screen and (max-width: 768px) {
+	.slope-shape-divider svg {
+		height: 50px;
+	}
 }
 
 /********* Background Slide Animation *********/

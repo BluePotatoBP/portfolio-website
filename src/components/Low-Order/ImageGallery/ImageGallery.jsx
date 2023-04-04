@@ -79,7 +79,7 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 		<img
 			src={images[currentIndex]}
 			alt=""
-			className="image"
+			className="img"
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		/>
