@@ -10,20 +10,28 @@ import AnimatedIcon from '../../Low-Order/AnimatedIcon/AnimatedIcon';
 
 const NavBar = () => {
 
-    return (
-        <nav className="navbar-container">
-            <AnimatedIcon />
-            <div className="spacer"></div>
-            <div className="navbar-helper-container">
-                <div className='navbar_links'>
-                    <NavLink to="/projects" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}><HiTemplate className='icon' />Projects</NavLink>
-                    <NavLink to="/contact" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}><MdPermContactCalendar className='icon' />Contact</NavLink>
-                    <a href="https://github.com/bluepotatobp/portfolio-website" draggable={false} target="_blank" rel='noreferrer' className="link"><FiExternalLink className='icon' />Source</a>
-                </div>
-                <SearchBar />
-            </div>
-        </nav>
-    );
+	return (
+		<nav className="navbar-container">
+			<AnimatedIcon />
+			<div className="navbar-helper-container">
+				<div className='navbar-links'>
+					<NavLink to="/projects" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}>
+						<HiTemplate className='icon' />
+						<div className="link-text">Projects</div>
+					</NavLink>
+					<NavLink to="/contact" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}>
+						<MdPermContactCalendar className='icon' />
+						<div className="link-text">Contact</div>
+					</NavLink>
+					<a href="https://github.com/bluepotatobp/portfolio-website" draggable={false} target="_blank" rel='noreferrer' className="link outgoing">
+						<FiExternalLink className='icon' />
+						<div className="link-text">Source</div>
+					</a>
+				</div>
+				<SearchBar />
+			</div>
+		</nav>
+	);
 
 }
 

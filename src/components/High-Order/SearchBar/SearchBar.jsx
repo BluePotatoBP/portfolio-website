@@ -96,19 +96,21 @@ const SearchBar = () => {
 					"Linux": "Ctrl"
 				};
 
-				const searchFooter = document.createElement("div");
-				searchFooter.className = "search-footer";
-				searchItems.current.appendChild(searchFooter);
-
-				const shortcutTip = document.createElement("div");
-				shortcutTip.className = "shortcut-tip";
-				shortcutTip.innerHTML = `<div class="highlight-code">${actionKey[OS]}+K</div> to toggle focus.`; // yes yes i know this is bad
-				searchFooter.appendChild(shortcutTip);
-
-				const keybindsTip = document.createElement("div");
-				keybindsTip.className = "keybinds-tip";
-				keybindsTip.innerHTML = `Keybinds <div class="highlight-code">${actionKey[OS]}+I</div>`;
-				searchFooter.appendChild(keybindsTip);
+				if(window.innerWidth >= 820) {
+					const searchFooter = document.createElement("div");
+					searchFooter.className = "search-footer";
+					searchItems.current.appendChild(searchFooter);
+					
+					const shortcutTip = document.createElement("div");
+					shortcutTip.className = "shortcut-tip";
+					shortcutTip.innerHTML = `<div class="highlight-code">${actionKey[OS]}+K</div> to toggle focus.`; // yes yes i know this is bad
+					searchFooter.appendChild(shortcutTip);
+	
+					const keybindsTip = document.createElement("div");
+					keybindsTip.className = "keybinds-tip";
+					keybindsTip.innerHTML = `Keybinds <div class="highlight-code">${actionKey[OS]}+I</div>`;
+					searchFooter.appendChild(keybindsTip);
+				}
 
 			} else if (!inputExists || projectList.length === 0) {
 				if (noSearchFooter) searchItems.current.removeChild(noSearchFooter);

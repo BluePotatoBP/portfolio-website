@@ -75,11 +75,11 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 		return <div className="dot-container">{dots}</div>;
 	};
 
-	const imageElement = useMemo(() => (
-		<img
-			src={images[currentIndex]}
+	const imageContainer = useMemo(() => (
+		<div
+			style={{ backgroundImage: `url(${images[currentIndex]})` }}
 			alt=""
-			className="img"
+			className="image-container"
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		/>
@@ -88,9 +88,7 @@ const ImageGallery = ({ images, autoplaySpeed = 3000, maxDots = 5 }) => {
 	return (
 		<div className="image-scroller" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 			<div className="inner-card">
-				<div className="image-container">
-					{imageElement}
-				</div>
+				{imageContainer}
 				<div className="controls">
 					<button className="prev" onClick={handlePrevClick}>◀</button>
 					{renderDots()}

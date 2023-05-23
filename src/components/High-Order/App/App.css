@@ -1,8 +1,9 @@
 :root {
   --transition: all 0.2s ease-in-out;
-  --primary-color: #687499;
+  --primary-color: hsl(225, 19%, 30%);
   --primary-dark-color: #525c7a;
   --secondary-color: #e0e0e0;
+  --secondary-hsl: hsl(225, 19%, 80%);
   --background-color: #121313;
   --background-light-color: #222222;
   --timestamp-color: #222424;
