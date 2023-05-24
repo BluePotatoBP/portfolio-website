@@ -4,7 +4,7 @@ const Home = () => {
     
     return (
         <div className="home-container">
-            <h1>Home</h1>
+            <div className="text-xl font-medium text-blue">Home</div>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
                 voluptatibus, quod, quia, voluptates quae voluptatem voluptate
