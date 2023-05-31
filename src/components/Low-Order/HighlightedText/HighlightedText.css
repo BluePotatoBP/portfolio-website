@@ -3,15 +3,13 @@
 	align-items: center;
 	gap: 0.2rem;
 	border-radius: 0.2rem;
-	padding: 0 0.2rem 0 0.2rem;
-	margin: 0 0.2rem 0 0.2rem;
 	font-weight: 500;
 }
 
 .highlighted-img {
 	display: inline-block;
 	width: 1rem;
-	height: 1rem;
+	height: inherit;
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -27,5 +25,4 @@
 .highlighted-text {
 	font-size: inherit;
 	line-height: inherit;
-	line-height: 1.6rem;
 }

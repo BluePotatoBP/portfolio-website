@@ -75,6 +75,10 @@
 	margin-right: .5rem;
 }
 
+.navbar-links .link.outgoing {
+	background-color: var(--primary-color);
+}
+
 @media screen and (min-width: 820px) {
 	.navbar-container .navbar-helper-container {
 		margin-right: 1rem;
@@ -120,9 +124,6 @@
 		margin-bottom: 1rem;
 	}
 
-	.navbar-links .link.outgoing {
-		background-color: var(--primary-color);
-	}
 }
 
 @media screen and (max-width: 450px) {

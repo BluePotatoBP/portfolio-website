@@ -3,7 +3,6 @@ import './NavBar.css';
 import { NavLink } from 'react-router-dom';
 import { MdPermContactCalendar } from 'react-icons/md';
 import { FiExternalLink } from 'react-icons/fi';
-import { HiTemplate } from 'react-icons/hi';
 
 import SearchBar from '../SearchBar/SearchBar';
 import AnimatedIcon from '../../Low-Order/AnimatedIcon/AnimatedIcon';
@@ -15,10 +14,6 @@ const NavBar = () => {
 			<AnimatedIcon />
 			<div className="navbar-helper-container">
 				<div className='navbar-links'>
-					<NavLink to="/projects" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}>
-						<HiTemplate className='icon' />
-						<div className="link-text">Projects</div>
-					</NavLink>
 					<NavLink to="/contact" draggable={false} className={({ isActive }) => isActive ? "active_link" : "link"}>
 						<MdPermContactCalendar className='icon' />
 						<div className="link-text">Contact</div>
