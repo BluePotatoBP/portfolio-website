@@ -51,7 +51,7 @@ const Projects = () => {
 				</div>
 				<div className="content-paragraph">
 					<div className="content-container">
-						<div className="paragraph-title">FUN FACT</div>
+						<div className="paragraph-title">ABOUT ME</div>
 						<span className="bottom-paragraph-text">
 							<HighlightedText text={"Like A Light"} image={LAL_LOGO} />
 							is how I got into NodeJS and Discord bots, but it wasn't
