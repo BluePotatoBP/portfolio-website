@@ -2,8 +2,6 @@
 
 ### Portfolio website built with [React](https://github.com/facebook/react) used to showcase my works over the years.
 
-### Project is on hold until [VOID](https://github.com/voidbotsprod/void-sapphire) is complete.
-
 <h1>How to run:</h1>
 
 ```
