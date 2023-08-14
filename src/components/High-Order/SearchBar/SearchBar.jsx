@@ -59,7 +59,7 @@ const SearchBar = () => {
 		};
 	}, []);
 
-	// Getting elements for later use
+	// Getting elements reference for later use
 	const searchInput = useRef(null);
 	const searchItems = useRef(null);
 
@@ -67,7 +67,7 @@ const SearchBar = () => {
 	useEffect(() => {
 		const noProjectsElement = document.getElementsByClassName("no-projects")[0];
 		const noShortcutTipElement = document.getElementsByClassName("shortcut-tip")[0];
-		const noKeybindsElement = document.getElementsByClassName("keybinds-tip")[0];
+		const noKeybindsElement = document.getElementsByClassName("clear-tip")[0];
 		const noSearchFooter = document.getElementsByClassName("search-footer")[0];
 
 		if (focused) {
@@ -96,20 +96,20 @@ const SearchBar = () => {
 					"Linux": "Ctrl"
 				};
 
-				if(window.innerWidth >= 820) {
+				if (window.innerWidth >= 820) {
 					const searchFooter = document.createElement("div");
 					searchFooter.className = "search-footer";
 					searchItems.current.appendChild(searchFooter);
-					
+
 					const shortcutTip = document.createElement("div");
 					shortcutTip.className = "shortcut-tip";
 					shortcutTip.innerHTML = `<div class="highlight-code">${actionKey[OS]}+K</div> to toggle focus.`; // yes yes i know this is bad
 					searchFooter.appendChild(shortcutTip);
-	
-					const keybindsTip = document.createElement("div");
-					keybindsTip.className = "keybinds-tip";
-					keybindsTip.innerHTML = `Keybinds <div class="highlight-code">${actionKey[OS]}+I</div>`;
-					searchFooter.appendChild(keybindsTip);
+
+					const clearTip = document.createElement("div");
+					clearTip.className = "clear-tip";
+					clearTip.innerHTML = `Clear input <div class="highlight-code">${actionKey[OS]}+U</div>`;
+					searchFooter.appendChild(clearTip);
 				}
 
 			} else if (!inputExists || projectList.length === 0) {
@@ -158,12 +158,14 @@ const SearchBar = () => {
 				focused ? searchInput.current.blur() : searchInput.current.focus();
 			}
 		};
+
 		document.addEventListener('keydown', callback);
 		return () => document.removeEventListener('keydown', callback);
 	}, [focused, searchInput]);
 
+	// 
 	// Clear input shortcut (Ctrl + U)
-	// Same story as above
+	//
 	useEffect(() => {
 		const callback = (event) => {
 			if ((event.metaKey || event.ctrlKey) && event.code === 'KeyU') {
@@ -171,6 +173,45 @@ const SearchBar = () => {
 				handleInputClear();
 			}
 		};
+
+		document.addEventListener('keydown', callback);
+		return () => document.removeEventListener('keydown', callback);
+	}, [handleInputClear]);
+	
+	// 
+	// Autofocus on searchbar when typing starts
+	//
+	useEffect(() => {
+		const callback = (event) => {
+			const conditions = [
+				event.metaKey,
+				event.ctrlKey,
+				event.code === 'OSLeft',
+				event.code === 'OSRight',
+				event.code === 'Escape',
+				event.code === 'AltLeft',
+				event.code === 'AltRight',
+				event.code === 'Tab',
+				event.code === 'Home',
+				event.code === 'End',
+				event.code === 'PageUp',
+				event.code === 'PageDown',
+				event.code === 'Insert',
+				event.code === 'Delete',
+				event.code === 'Pause',
+				event.code === 'ScrollLock',
+				event.code === 'ArrowUp',
+				event.code === 'ArrowDown',
+				event.code === 'ArrowLeft',
+				event.code === 'ArrowRight',
+				event.code.match(/F[0-9]/i)
+			]
+
+			if(!conditions.some(condition => condition)) {
+				searchInput.current.focus()
+			}
+		};
+
 		document.addEventListener('keydown', callback);
 		return () => document.removeEventListener('keydown', callback);
 	}, [handleInputClear]);
