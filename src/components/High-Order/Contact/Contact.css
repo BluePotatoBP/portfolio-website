@@ -1,4 +1,17 @@
 .contact-container {
-    color: var(--secondary-color);
-    margin: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	height: 100%;
+	padding-top: 5rem;
+	background-size: 110%;
+	background-repeat: repeat;
+	animation: 30s slide infinite;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	transition: all 0.3s ease-in-out;
+	color: var(--secondary-color);
+	z-index: 1;
 }
