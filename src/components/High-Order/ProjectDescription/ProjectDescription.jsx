@@ -6,11 +6,10 @@ const ProjectDescription = ({ project }) => {
 
     const [readme, setReadme] = useState(null);
     const hasReadme = readme !== null;
+	const FETCH_URL = `https://raw.githubusercontent.com/${project.repo}/master/README.md`;
 
     // Getting data from github api
     const getMarkdownData = useCallback(() => {
-        const FETCH_URL = `https://raw.githubusercontent.com/${project.repo}/master/README.md`;
-
         fetch(FETCH_URL)
             .then(response => {
                 if (response.ok)
@@ -22,7 +21,7 @@ const ProjectDescription = ({ project }) => {
             .then(data => {
                 setReadme(data)
             })
-    }, [project.repo]);
+    }, [FETCH_URL]);
 
     // Getting data from local storage
     useEffect(() => {
