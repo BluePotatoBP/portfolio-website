@@ -36,6 +36,10 @@
 }
 
 .deobfuscated-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	margin-top: 2rem;
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	border-radius: 2rem;

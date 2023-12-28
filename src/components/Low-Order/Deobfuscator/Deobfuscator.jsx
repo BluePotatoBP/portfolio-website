@@ -16,13 +16,24 @@ const Deobfuscator = () => {
 
 	let correctOutput = deobfuscatedString === atob("Ymx1ZXBvdGF0b2JwQGR1Y2suY29t")
 
-	const copyToClipboard = () => {
+	const copyToClipboard = async () => {
 		if (correctOutput) {
-			navigator.clipboard.writeText(deobfuscatedString)
+			try {
+				navigator.clipboard.writeText(deobfuscatedString)
+			} catch (error) {
+				// Mobile workaround
+				const tempTextarea = document.createElement("textarea");
+				tempTextarea.value = deobfuscatedString;
+				document.body.appendChild(tempTextarea);
+				tempTextarea.select();
+				document.execCommand("copy");
+				document.body.removeChild(tempTextarea);
+			}
+
 			setInputValue("Copied!")
-			setTimeout(() => {
-				setInputValue("")
-			}, 3000);
+				setTimeout(() => {
+					setInputValue("")
+				}, 3000);
 		}
 
 	}
