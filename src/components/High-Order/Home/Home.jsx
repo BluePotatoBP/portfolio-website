@@ -27,13 +27,13 @@ const Projects = () => {
 					<div className="content-container">
 						<div className="paragraph-title">ABOUT ME</div>
 						<span className="bottom-paragraph-text">
-							Hi! My name is Leon, or <HighlightedText text={"BluePotatoBP"} image={PFP} /> online.
+							Hi! My name is Leon, or <HighlightedText text={"BluePotatoBP"} image={PFP} link="/contact" /> online.
 							I got into NodeJS in middle school, made a discord bot to help me with reminders
 							which later turned into a more general use bot, and after ~three years of casual
 							development, I decided to expand my portfolio and work on other projects, such as
-							<HighlightedText text={"Portfolio Website"} image={PORTFOLIO_LOGO} />
+							<HighlightedText text={"Portfolio Website"} image={PORTFOLIO_LOGO} link="projects/portfolio-website" />
 							and
-							<HighlightedText text={"VOID"} image={VOID_LOGO} />.
+							<HighlightedText text={"VOID"} image={VOID_LOGO} link="projects/void" />.
 							I'm a huge fan of practical apps, and not wasting time. A bit of styling doesn't
 							hurt either. Have a looksey at my projects:
 						</span>
