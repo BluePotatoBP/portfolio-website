@@ -33,6 +33,7 @@
 	background-size: 100%;
 	background-repeat: no-repeat;
 	transition: background 0.3s ease-in-out;
+	will-change: transform;
 }
 
 .thumbnail-container:hover {
