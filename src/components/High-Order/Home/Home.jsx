@@ -1,10 +1,7 @@
 import "./Home.css";
-import { useState } from "react";
-import { getProjects } from "../../../util/ProjectsList/ProjectsList";
-import { MdExpandMore } from "react-icons/md";
 import HighlightedText from "../../Low-Order/HighlightedText/HighlightedText";
-import Card from "../../Low-Order/Card/Card";
 import ImageGallery from "../../Low-Order/ImageGallery/ImageGallery";
+import ProjectListGrid, { listProjects } from "../../Low-Order/ProjectListGrid/ProjectListGrid";
 
 const PFP = process.env.PUBLIC_URL + "pfp.png";
 const LAL_LOGO = "lalLogo512.png";
@@ -13,29 +10,6 @@ const VOID_LOGO = process.env.PUBLIC_URL + "/voidLogo.png"
 const imagesList = [PFP, LAL_LOGO, PORTFOLIO_LOGO, VOID_LOGO];
 
 const Projects = () => {
-	// Getting the projects
-	const projects = Object.values(getProjects()).filter((p) => {
-		if (p.hidden) return null;
-		return p;
-	});
-
-	// State variable to keep track of the number of displayed projects
-	const [displayedProjects, setDisplayedProjects] = useState(8);
-
-	// Function to return the current list of projects
-	const listProjects = (amount, onlyFeatured = false) =>
-		projects.slice(0, amount).map((p, i) => {
-			if (p === null) return null;
-			if (onlyFeatured && !p.featured) return null;
-			if (p.hidden || p.hidden === null) return null;
-			return <Card decoration={p} key={`card-${p.index}-${i}`} />;
-		});
-
-	// Function to handle the load more button click
-	const handleLoadMoreClick = () => {
-		setDisplayedProjects(displayedProjects + 4);
-	};
-
 	return (
 		<div className="projects-container" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "./bgPattern.png"})` }}>
 			<div className="projects-main-display">
@@ -53,15 +27,15 @@ const Projects = () => {
 					<div className="content-container">
 						<div className="paragraph-title">ABOUT ME</div>
 						<span className="bottom-paragraph-text">
-							<HighlightedText text={"Like A Light"} image={LAL_LOGO} />
-							is how I got into NodeJS and Discord bots, but it wasn't
-							always called that. Instead, it started out as "Assistant" and was
-							made for personal use to help me with reminders. After about three
-							years of development, I decided to take a break and work on some
-							other projects, such as
+							Hi! My name is Leon, or <HighlightedText text={"BluePotatoBP"} image={PFP} /> online.
+							I got into NodeJS in middle school, made a discord bot to help me with reminders
+							which later turned into a more general use bot, and after ~three years of casual
+							development, I decided to expand my portfolio and work on other projects, such as
 							<HighlightedText text={"Portfolio Website"} image={PORTFOLIO_LOGO} />
 							and
-							<HighlightedText text={"VOID"} image={VOID_LOGO} />
+							<HighlightedText text={"VOID"} image={VOID_LOGO} />.
+							I'm a huge fan of practical apps, and not wasting time. A bit of styling doesn't
+							hurt either. Have a looksey at my projects:
 						</span>
 					</div>
 					<ImageGallery images={imagesList} />
@@ -73,17 +47,7 @@ const Projects = () => {
 						</svg>
 					</div>
 				</div>
-				<div className="projects-list">
-					<h1 className="title-large">All Projects</h1>
-					<div className="projects-list-items">
-						{listProjects(displayedProjects)}
-					</div>
-					{displayedProjects < projects.length && (
-						<button className="load-more-btn" title="Press to load more projects." onClick={handleLoadMoreClick}>
-							<MdExpandMore />
-						</button>
-					)}
-				</div>
+				<ProjectListGrid />
 			</div>
 		</div>
 	);

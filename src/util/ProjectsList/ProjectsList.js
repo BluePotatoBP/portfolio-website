@@ -48,8 +48,21 @@ const projects = {
 	},
 };
 
-export function getProjects() {
-	return projects;
+/**
+ * Helper function for getting projects
+ * @param {boolean} showHidden Should hidden results be included
+ * @returns Array of projects
+ */
+export function getProjects(showHidden = false) {
+	let filteredProjects = []
+	if (showHidden) {
+		filteredProjects =
+			Object.values(projects).filter((p) => {
+				if (p.hidden) return null;
+				return p;
+			});
+		return filteredProjects
+	} else return projects
 }
 
 export function getProject(name) {
