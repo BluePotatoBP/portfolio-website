@@ -2,11 +2,13 @@ import "./SearchBar.css";
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { getProjects } from "../../../util/ProjectsList/ProjectsList.js";
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { FaSearch, FaHourglassHalf } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { MdImageNotSupported } from "react-icons/md";
+
+
 
 const SearchBar = () => {
 	// Requesting the projects list
@@ -181,6 +183,7 @@ const SearchBar = () => {
 	// 
 	// Autofocus on searchbar when typing starts
 	//
+	const location = useLocation()
 	useEffect(() => {
 		const callback = (event) => {
 			const conditions = [
@@ -208,13 +211,14 @@ const SearchBar = () => {
 			]
 
 			if(!conditions.some(condition => condition)) {
-				searchInput.current.focus()
+				if(location.pathname === "/")
+					searchInput.current.focus()
 			}
 		};
 
 		document.addEventListener('keydown', callback);
 		return () => document.removeEventListener('keydown', callback);
-	}, [handleInputClear]);
+	}, [handleInputClear, location]);
 
 	// Mapping the projects and returning list items
 	const projectListItems = () =>

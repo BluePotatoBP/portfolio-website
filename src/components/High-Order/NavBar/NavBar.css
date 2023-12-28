@@ -51,6 +51,7 @@
 	padding: .8rem .8rem;
 	transition: var(--transition);
 	border: 1px solid transparent;
+	box-shadow: 0 0 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
 }
 
 .navbar-links .link:hover {
@@ -84,8 +85,9 @@
 	margin-right: .5rem;
 }
 
-.navbar-links .link.outgoing {
-	background-color: var(--primary-color);
+.navbar-links .link.outgoing:hover {
+	background-color: var(--secondary-color);
+	color: var(--background-color);
 }
 
 @media screen and (min-width: 820px) {
