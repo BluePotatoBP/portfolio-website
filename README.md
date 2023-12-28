@@ -1,6 +1,6 @@
 <h1>Description:</h1>
 
-### Portfolio website built with [React](https://github.com/facebook/react) used to showcase my works over the years.
+### Portfolio website built with [React](https://github.com/facebook/react) used to showcase my work over the years.
 
 <h1>How to run:</h1>
 
